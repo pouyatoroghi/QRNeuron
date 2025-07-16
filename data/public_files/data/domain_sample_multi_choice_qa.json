@@ -1,0 +1,236 @@
+{
+    "49daf826-3ead-11ef-b37e-0c9d921fe277": {
+        "sentences": [
+            "You will be asked a multiple-choice question. Respond with the letter which corresponds to the correct answer,followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nThe energy given up by electrons as they move through the electron transport chain is used to\n A. make glucose\n B. break down glucose\n C. produce ATP\n D. make NADH\n\nResponse:",
+            "Below is a multiple-choice question. Respond with the letter that best answers the question. Keep your response brief, stating only the letter corresponding to your answer, followed by a period, with no explanation.\nThe question is:\nThe energy given up by electrons as they move through the electron transport chain is used to\n A. make NADH\n B. break down glucose\n C. produce ATP\n D. make glucose\n\nResponse:",
+            "Prepare to answer a multiple-choice question. Provide the letter that corresponds to the correct answer, followed by a period. Keep your response brief; no explanations are necessary.\nHere is the question:\nThe energy given up by electrons as they move through the electron transport chain is used to\n A. break down glucose\n B. produce ATP\n C. make glucose\n D. make NADH\n\nYour response:"
+        ],
+        "obj_label": [
+            "C",
+            "C",
+            "B"
+        ],
+        "relation_name": "biology"
+    },
+    "49daf829-3ead-11ef-b37e-0c9d921fe277": {
+        "sentences": [
+            "You will be asked a multiple-choice question. Respond with the letter which corresponds to the correct answer,followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nDuring the period when life is believed to have begun, the atmosphere on primitive Earth contained abundant amounts of all the following gases EXCEPT\n A. oxygen\n B. methane\n C. hydrogen\n D. ammonia\n\nResponse:",
+            "Below is a multiple-choice question. Respond with the letter that best answers the question. Keep your response brief, stating only the letter corresponding to your answer, followed by a period, with no explanation.\nThe question is:\nDuring the period when life is believed to have begun, the atmosphere on primitive Earth contained abundant amounts of all the following gases EXCEPT\n A. oxygen\n B. methane\n C. ammonia\n D. hydrogen\n\nResponse:",
+            "Prepare to answer a multiple-choice question. Provide the letter that corresponds to the correct answer, followed by a period. Keep your response brief; no explanations are necessary.\nHere is the question:\nDuring the period when life is believed to have begun, the atmosphere on primitive Earth contained abundant amounts of all the following gases EXCEPT\n A. ammonia\n B. hydrogen\n C. oxygen\n D. methane\n\nYour response:"
+        ],
+        "obj_label": [
+            "A",
+            "A",
+            "C"
+        ],
+        "relation_name": "biology"
+    },
+    "49daf82c-3ead-11ef-b37e-0c9d921fe277": {
+        "sentences": [
+            "You will be asked a multiple-choice question. Respond with the letter which corresponds to the correct answer,followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nConvergent evolution is best exemplified by which of the following?\n A. The pectoral fins of fish and the front legs of cats\n B. The leaves of an oak tree and the spines of a cactus\n C. The presence of a notochord in all chordate embryos\n D. The wings of an insect and the wings of a bird\n\nResponse:",
+            "Below is a multiple-choice question. Respond with the letter that best answers the question. Keep your response brief, stating only the letter corresponding to your answer, followed by a period, with no explanation.\nThe question is:\nConvergent evolution is best exemplified by which of the following?\n A. The wings of an insect and the wings of a bird\n B. The pectoral fins of fish and the front legs of cats\n C. The presence of a notochord in all chordate embryos\n D. The leaves of an oak tree and the spines of a cactus\n\nResponse:",
+            "Prepare to answer a multiple-choice question. Provide the letter that corresponds to the correct answer, followed by a period. Keep your response brief; no explanations are necessary.\nHere is the question:\nConvergent evolution is best exemplified by which of the following?\n A. The pectoral fins of fish and the front legs of cats\n B. The wings of an insect and the wings of a bird\n C. The presence of a notochord in all chordate embryos\n D. The leaves of an oak tree and the spines of a cactus\n\nYour response:"
+        ],
+        "obj_label": [
+            "D",
+            "A",
+            "B"
+        ],
+        "relation_name": "biology"
+    },
+    "49daf82f-3ead-11ef-b37e-0c9d921fe277": {
+        "sentences": [
+            "You will be asked a multiple-choice question. Respond with the letter which corresponds to the correct answer,followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nTwo identical capacitors are hooked in parallel to an external circuit. Which of the following quantities must be the same for both capacitors? I. the charge stored on the capacitor II.  the voltage across the capacitor III. the capacitance of the capacitor\n A. II only\n B. (E) I, II, and III\n C. II and III only\n D. I only\n\nResponse:",
+            "Below is a multiple-choice question. Respond with the letter that best answers the question. Keep your response brief, stating only the letter corresponding to your answer, followed by a period, with no explanation.\nThe question is:\nTwo identical capacitors are hooked in parallel to an external circuit. Which of the following quantities must be the same for both capacitors? I. the charge stored on the capacitor II.  the voltage across the capacitor III. the capacitance of the capacitor\n A. (E) I, II, and III\n B. II and III only\n C. II only\n D. I only\n\nResponse:",
+            "Prepare to answer a multiple-choice question. Provide the letter that corresponds to the correct answer, followed by a period. Keep your response brief; no explanations are necessary.\nHere is the question:\nTwo identical capacitors are hooked in parallel to an external circuit. Which of the following quantities must be the same for both capacitors? I. the charge stored on the capacitor II.  the voltage across the capacitor III. the capacitance of the capacitor\n A. (E) I, II, and III\n B. I only\n C. II only\n D. II and III only\n\nYour response:"
+        ],
+        "obj_label": [
+            "B",
+            "A",
+            "A"
+        ],
+        "relation_name": "physics"
+    },
+    "49daf832-3ead-11ef-b37e-0c9d921fe277": {
+        "sentences": [
+            "You will be asked a multiple-choice question. Respond with the letter which corresponds to the correct answer,followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nHow much work is required to charge a 10 \u00b5F capacitor to a potential difference of 100 V ?\n A. 0.05 J\n B. 0.01 J\n C. 0.005 J\n D. 0.1 J\n\nResponse:",
+            "Below is a multiple-choice question. Respond with the letter that best answers the question. Keep your response brief, stating only the letter corresponding to your answer, followed by a period, with no explanation.\nThe question is:\nHow much work is required to charge a 10 \u00b5F capacitor to a potential difference of 100 V ?\n A. 0.05 J\n B. 0.01 J\n C. 0.005 J\n D. 0.1 J\n\nResponse:",
+            "Prepare to answer a multiple-choice question. Provide the letter that corresponds to the correct answer, followed by a period. Keep your response brief; no explanations are necessary.\nHere is the question:\nHow much work is required to charge a 10 \u00b5F capacitor to a potential difference of 100 V ?\n A. 0.1 J\n B. 0.05 J\n C. 0.005 J\n D. 0.01 J\n\nYour response:"
+        ],
+        "obj_label": [
+            "A",
+            "A",
+            "B"
+        ],
+        "relation_name": "physics"
+    },
+    "49daf835-3ead-11ef-b37e-0c9d921fe277": {
+        "sentences": [
+            "You will be asked a multiple-choice question. Respond with the letter which corresponds to the correct answer,followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nA box of mass m slides on a horizontal surface with initial speed v0. It feels no forces other than gravity and the force from the surface. If the coefficient of kinetic friction between the box and the surface is \u03bc, how far does the box slide before coming to rest?\n A. v0^2/(\u03bcg)\n B. 2v0^2/(\u03bcg)\n C. mv0^2/(\u03bcg)\n D. v0^2/(2\u03bcg)\n\nResponse:",
+            "Below is a multiple-choice question. Respond with the letter that best answers the question. Keep your response brief, stating only the letter corresponding to your answer, followed by a period, with no explanation.\nThe question is:\nA box of mass m slides on a horizontal surface with initial speed v0. It feels no forces other than gravity and the force from the surface. If the coefficient of kinetic friction between the box and the surface is \u03bc, how far does the box slide before coming to rest?\n A. v0^2/(2\u03bcg)\n B. 2v0^2/(\u03bcg)\n C. v0^2/(\u03bcg)\n D. mv0^2/(\u03bcg)\n\nResponse:",
+            "Prepare to answer a multiple-choice question. Provide the letter that corresponds to the correct answer, followed by a period. Keep your response brief; no explanations are necessary.\nHere is the question:\nA box of mass m slides on a horizontal surface with initial speed v0. It feels no forces other than gravity and the force from the surface. If the coefficient of kinetic friction between the box and the surface is \u03bc, how far does the box slide before coming to rest?\n A. mv0^2/(\u03bcg)\n B. 2v0^2/(\u03bcg)\n C. v0^2/(\u03bcg)\n D. v0^2/(2\u03bcg)\n\nYour response:"
+        ],
+        "obj_label": [
+            "D",
+            "A",
+            "D"
+        ],
+        "relation_name": "physics"
+    },
+    "49daf838-3ead-11ef-b37e-0c9d921fe277": {
+        "sentences": [
+            "You will be asked a multiple-choice question. Respond with the letter which corresponds to the correct answer,followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nCarbon has an atomic radius of 77 pm and a first ionization energy of 1086 kJ/mol.\n A. 86 pm, 898 kJ/mol\n B. 70 pm, 1402 kJ/mol\n C. 40 pm, 995 kJ/mol\n D. 135 pm, 523 kJ/mol\n\nResponse:",
+            "Below is a multiple-choice question. Respond with the letter that best answers the question. Keep your response brief, stating only the letter corresponding to your answer, followed by a period, with no explanation.\nThe question is:\nCarbon has an atomic radius of 77 pm and a first ionization energy of 1086 kJ/mol.\n A. 40 pm, 995 kJ/mol\n B. 86 pm, 898 kJ/mol\n C. 135 pm, 523 kJ/mol\n D. 70 pm, 1402 kJ/mol\n\nResponse:",
+            "Prepare to answer a multiple-choice question. Provide the letter that corresponds to the correct answer, followed by a period. Keep your response brief; no explanations are necessary.\nHere is the question:\nCarbon has an atomic radius of 77 pm and a first ionization energy of 1086 kJ/mol.\n A. 70 pm, 1402 kJ/mol\n B. 135 pm, 523 kJ/mol\n C. 86 pm, 898 kJ/mol\n D. 40 pm, 995 kJ/mol\n\nYour response:"
+        ],
+        "obj_label": [
+            "B",
+            "D",
+            "A"
+        ],
+        "relation_name": "chemistry"
+    },
+    "49daf83b-3ead-11ef-b37e-0c9d921fe277": {
+        "sentences": [
+            "You will be asked a multiple-choice question. Respond with the letter which corresponds to the correct answer,followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nAn unknown substance is found to have a high melting point. In addition, it is a poor conductor of electricity and does not dissolve in water. The substance most likely contains\n A. nonpolar covalent bonding\n B. ionic bonding\n C. metallic bonding\n D. covalent network bonding\n\nResponse:",
+            "Below is a multiple-choice question. Respond with the letter that best answers the question. Keep your response brief, stating only the letter corresponding to your answer, followed by a period, with no explanation.\nThe question is:\nAn unknown substance is found to have a high melting point. In addition, it is a poor conductor of electricity and does not dissolve in water. The substance most likely contains\n A. ionic bonding\n B. covalent network bonding\n C. metallic bonding\n D. nonpolar covalent bonding\n\nResponse:",
+            "Prepare to answer a multiple-choice question. Provide the letter that corresponds to the correct answer, followed by a period. Keep your response brief; no explanations are necessary.\nHere is the question:\nAn unknown substance is found to have a high melting point. In addition, it is a poor conductor of electricity and does not dissolve in water. The substance most likely contains\n A. metallic bonding\n B. covalent network bonding\n C. nonpolar covalent bonding\n D. ionic bonding\n\nYour response:"
+        ],
+        "obj_label": [
+            "D",
+            "B",
+            "B"
+        ],
+        "relation_name": "chemistry"
+    },
+    "49daf83e-3ead-11ef-b37e-0c9d921fe277": {
+        "sentences": [
+            "You will be asked a multiple-choice question. Respond with the letter which corresponds to the correct answer,followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nThe net ionic equation expected when solutions of NH4Br and AgNO3 are mixed together is\n A. Br-(aq) + NO3-(aq) \u2192 NO3Br(aq)\n B. NH4+(aq) + Ag+(aq) \u2192 Ag(NH4)3+2(aq)\n C. Ag+(aq) + Br-(aq) \u2192 AgBr(s)\n D. NH4Br(aq) + NO3-(aq) \u2192 NH4NO3(aq) + Br-(aq)\n\nResponse:",
+            "Below is a multiple-choice question. Respond with the letter that best answers the question. Keep your response brief, stating only the letter corresponding to your answer, followed by a period, with no explanation.\nThe question is:\nThe net ionic equation expected when solutions of NH4Br and AgNO3 are mixed together is\n A. Ag+(aq) + Br-(aq) \u2192 AgBr(s)\n B. Br-(aq) + NO3-(aq) \u2192 NO3Br(aq)\n C. NH4Br(aq) + NO3-(aq) \u2192 NH4NO3(aq) + Br-(aq)\n D. NH4+(aq) + Ag+(aq) \u2192 Ag(NH4)3+2(aq)\n\nResponse:",
+            "Prepare to answer a multiple-choice question. Provide the letter that corresponds to the correct answer, followed by a period. Keep your response brief; no explanations are necessary.\nHere is the question:\nThe net ionic equation expected when solutions of NH4Br and AgNO3 are mixed together is\n A. Br-(aq) + NO3-(aq) \u2192 NO3Br(aq)\n B. NH4+(aq) + Ag+(aq) \u2192 Ag(NH4)3+2(aq)\n C. Ag+(aq) + Br-(aq) \u2192 AgBr(s)\n D. NH4Br(aq) + NO3-(aq) \u2192 NH4NO3(aq) + Br-(aq)\n\nYour response:"
+        ],
+        "obj_label": [
+            "C",
+            "A",
+            "C"
+        ],
+        "relation_name": "chemistry"
+    },
+    "49daf841-3ead-11ef-b37e-0c9d921fe277": {
+        "sentences": [
+            "You will be asked a multiple-choice question. Respond with the letter which corresponds to the correct answer,followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nThe length of a rectangle is twice its width. Given the length of the diagonal is $5\\sqrt{5}$, find the area of the rectangle.\n A. 2500\n B. 2\n C. 50\n D. 25\n\nResponse:",
+            "Below is a multiple-choice question. Respond with the letter that best answers the question. Keep your response brief, stating only the letter corresponding to your answer, followed by a period, with no explanation.\nThe question is:\nThe length of a rectangle is twice its width. Given the length of the diagonal is $5\\sqrt{5}$, find the area of the rectangle.\n A. 25\n B. 2\n C. 50\n D. 2500\n\nResponse:",
+            "Prepare to answer a multiple-choice question. Provide the letter that corresponds to the correct answer, followed by a period. Keep your response brief; no explanations are necessary.\nHere is the question:\nThe length of a rectangle is twice its width. Given the length of the diagonal is $5\\sqrt{5}$, find the area of the rectangle.\n A. 2500\n B. 2\n C. 25\n D. 50\n\nYour response:"
+        ],
+        "obj_label": [
+            "C",
+            "C",
+            "D"
+        ],
+        "relation_name": "mathematics"
+    },
+    "49daf844-3ead-11ef-b37e-0c9d921fe277": {
+        "sentences": [
+            "You will be asked a multiple-choice question. Respond with the letter which corresponds to the correct answer,followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nA positive integer n is called \u201cpowerful\u201d if, for every prime factor p of n, p^2 is also a factor of n. An example of a powerful number is\n A. 300\n B. 392\n C. 336\n D. 297\n\nResponse:",
+            "Below is a multiple-choice question. Respond with the letter that best answers the question. Keep your response brief, stating only the letter corresponding to your answer, followed by a period, with no explanation.\nThe question is:\nA positive integer n is called \u201cpowerful\u201d if, for every prime factor p of n, p^2 is also a factor of n. An example of a powerful number is\n A. 336\n B. 392\n C. 300\n D. 297\n\nResponse:",
+            "Prepare to answer a multiple-choice question. Provide the letter that corresponds to the correct answer, followed by a period. Keep your response brief; no explanations are necessary.\nHere is the question:\nA positive integer n is called \u201cpowerful\u201d if, for every prime factor p of n, p^2 is also a factor of n. An example of a powerful number is\n A. 300\n B. 392\n C. 297\n D. 336\n\nYour response:"
+        ],
+        "obj_label": [
+            "B",
+            "B",
+            "B"
+        ],
+        "relation_name": "mathematics"
+    },
+    "49daf847-3ead-11ef-b37e-0c9d921fe277": {
+        "sentences": [
+            "You will be asked a multiple-choice question. Respond with the letter which corresponds to the correct answer,followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nAt breakfast, lunch, and dinner, Joe randomly chooses with equal probabilities either an apple, an orange, or a banana to eat. On a given day, what is the probability that Joe will eat at least two different kinds of fruit?\n A. \\frac{8}{9}\n B. \\frac{7}{9}\n C. \\frac{5}{9}\n D. \\frac{9}{11}\n\nResponse:",
+            "Below is a multiple-choice question. Respond with the letter that best answers the question. Keep your response brief, stating only the letter corresponding to your answer, followed by a period, with no explanation.\nThe question is:\nAt breakfast, lunch, and dinner, Joe randomly chooses with equal probabilities either an apple, an orange, or a banana to eat. On a given day, what is the probability that Joe will eat at least two different kinds of fruit?\n A. \\frac{5}{9}\n B. \\frac{9}{11}\n C. \\frac{8}{9}\n D. \\frac{7}{9}\n\nResponse:",
+            "Prepare to answer a multiple-choice question. Provide the letter that corresponds to the correct answer, followed by a period. Keep your response brief; no explanations are necessary.\nHere is the question:\nAt breakfast, lunch, and dinner, Joe randomly chooses with equal probabilities either an apple, an orange, or a banana to eat. On a given day, what is the probability that Joe will eat at least two different kinds of fruit?\n A. \\frac{8}{9}\n B. \\frac{7}{9}\n C. \\frac{5}{9}\n D. \\frac{9}{11}\n\nYour response:"
+        ],
+        "obj_label": [
+            "A",
+            "C",
+            "A"
+        ],
+        "relation_name": "mathematics"
+    },
+    "49daf84a-3ead-11ef-b37e-0c9d921fe277": {
+        "sentences": [
+            "You will be asked a multiple-choice question. Respond with the letter which corresponds to the correct answer,followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nIn Python 3, which of the following function convert a string to an int in python?\n A. long(x [,base] )\n B. int(x [,base])\n C. float(x)\n D. str(x)\n\nResponse:",
+            "Below is a multiple-choice question. Respond with the letter that best answers the question. Keep your response brief, stating only the letter corresponding to your answer, followed by a period, with no explanation.\nThe question is:\nIn Python 3, which of the following function convert a string to an int in python?\n A. long(x [,base] )\n B. str(x)\n C. float(x)\n D. int(x [,base])\n\nResponse:",
+            "Prepare to answer a multiple-choice question. Provide the letter that corresponds to the correct answer, followed by a period. Keep your response brief; no explanations are necessary.\nHere is the question:\nIn Python 3, which of the following function convert a string to an int in python?\n A. int(x [,base])\n B. str(x)\n C. long(x [,base] )\n D. float(x)\n\nYour response:"
+        ],
+        "obj_label": [
+            "B",
+            "D",
+            "A"
+        ],
+        "relation_name": "computer_science"
+    },
+    "49daf84d-3ead-11ef-b37e-0c9d921fe277": {
+        "sentences": [
+            "You will be asked a multiple-choice question. Respond with the letter which corresponds to the correct answer,followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nA programmer is writing a program that is intended to be able to process large amounts of data. Which of the following considerations is LEAST likely to affect the ability of the program to process larger data sets?\n A. How long the program takes to run\n B. How much memory the program requires as it runs\n C. How much storage space the program requires as it runs\n D. How many programming statements the program contains\n\nResponse:",
+            "Below is a multiple-choice question. Respond with the letter that best answers the question. Keep your response brief, stating only the letter corresponding to your answer, followed by a period, with no explanation.\nThe question is:\nA programmer is writing a program that is intended to be able to process large amounts of data. Which of the following considerations is LEAST likely to affect the ability of the program to process larger data sets?\n A. How much memory the program requires as it runs\n B. How many programming statements the program contains\n C. How much storage space the program requires as it runs\n D. How long the program takes to run\n\nResponse:",
+            "Prepare to answer a multiple-choice question. Provide the letter that corresponds to the correct answer, followed by a period. Keep your response brief; no explanations are necessary.\nHere is the question:\nA programmer is writing a program that is intended to be able to process large amounts of data. Which of the following considerations is LEAST likely to affect the ability of the program to process larger data sets?\n A. How much storage space the program requires as it runs\n B. How long the program takes to run\n C. How much memory the program requires as it runs\n D. How many programming statements the program contains\n\nYour response:"
+        ],
+        "obj_label": [
+            "D",
+            "B",
+            "D"
+        ],
+        "relation_name": "computer_science"
+    },
+    "49daf850-3ead-11ef-b37e-0c9d921fe277": {
+        "sentences": [
+            "You will be asked a multiple-choice question. Respond with the letter which corresponds to the correct answer,followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nSuppose the characters 0,1, . . . ,8,9,A,B,C,D, E,F are used to represent a hexadecimal (base-16) number. Here A = 10, B = 11, . . . ,F = 15. What is the largest base-10 integer that can be represented with a two-digit hexadecimal number, such as 14 or 3A?\n A. 32\n B. 256\n C. 225\n D. 255\n\nResponse:",
+            "Below is a multiple-choice question. Respond with the letter that best answers the question. Keep your response brief, stating only the letter corresponding to your answer, followed by a period, with no explanation.\nThe question is:\nSuppose the characters 0,1, . . . ,8,9,A,B,C,D, E,F are used to represent a hexadecimal (base-16) number. Here A = 10, B = 11, . . . ,F = 15. What is the largest base-10 integer that can be represented with a two-digit hexadecimal number, such as 14 or 3A?\n A. 256\n B. 225\n C. 32\n D. 255\n\nResponse:",
+            "Prepare to answer a multiple-choice question. Provide the letter that corresponds to the correct answer, followed by a period. Keep your response brief; no explanations are necessary.\nHere is the question:\nSuppose the characters 0,1, . . . ,8,9,A,B,C,D, E,F are used to represent a hexadecimal (base-16) number. Here A = 10, B = 11, . . . ,F = 15. What is the largest base-10 integer that can be represented with a two-digit hexadecimal number, such as 14 or 3A?\n A. 225\n B. 32\n C. 255\n D. 256\n\nYour response:"
+        ],
+        "obj_label": [
+            "D",
+            "D",
+            "C"
+        ],
+        "relation_name": "computer_science"
+    },
+    "49daf853-3ead-11ef-b37e-0c9d921fe277": {
+        "sentences": [
+            "You will be asked a multiple-choice question. Respond with the letter which corresponds to the correct answer,followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nThe tendency for a population to continue to grow long after replacement fertility has been achieved is called\n A. demographic momentum.\n B. zero population growth.\n C. rapid growth rate.\n D. homeostatic plateau.\n\nResponse:",
+            "Below is a multiple-choice question. Respond with the letter that best answers the question. Keep your response brief, stating only the letter corresponding to your answer, followed by a period, with no explanation.\nThe question is:\nThe tendency for a population to continue to grow long after replacement fertility has been achieved is called\n A. homeostatic plateau.\n B. rapid growth rate.\n C. demographic momentum.\n D. zero population growth.\n\nResponse:",
+            "Prepare to answer a multiple-choice question. Provide the letter that corresponds to the correct answer, followed by a period. Keep your response brief; no explanations are necessary.\nHere is the question:\nThe tendency for a population to continue to grow long after replacement fertility has been achieved is called\n A. zero population growth.\n B. rapid growth rate.\n C. homeostatic plateau.\n D. demographic momentum.\n\nYour response:"
+        ],
+        "obj_label": [
+            "A",
+            "C",
+            "D"
+        ],
+        "relation_name": "geography"
+    },
+    "49daf856-3ead-11ef-b37e-0c9d921fe277": {
+        "sentences": [
+            "You will be asked a multiple-choice question. Respond with the letter which corresponds to the correct answer,followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nThe tendency for migration to decrease with distance is called\n A. distance decay.\n B. pull factors.\n C. migration selectivity.\n D. push factors.\n\nResponse:",
+            "Below is a multiple-choice question. Respond with the letter that best answers the question. Keep your response brief, stating only the letter corresponding to your answer, followed by a period, with no explanation.\nThe question is:\nThe tendency for migration to decrease with distance is called\n A. push factors.\n B. pull factors.\n C. distance decay.\n D. migration selectivity.\n\nResponse:",
+            "Prepare to answer a multiple-choice question. Provide the letter that corresponds to the correct answer, followed by a period. Keep your response brief; no explanations are necessary.\nHere is the question:\nThe tendency for migration to decrease with distance is called\n A. pull factors.\n B. distance decay.\n C. migration selectivity.\n D. push factors.\n\nYour response:"
+        ],
+        "obj_label": [
+            "A",
+            "C",
+            "B"
+        ],
+        "relation_name": "geography"
+    },
+    "49daf859-3ead-11ef-b37e-0c9d921fe277": {
+        "sentences": [
+            "You will be asked a multiple-choice question. Respond with the letter which corresponds to the correct answer,followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nWhich zone contains low-income slums, ethnic ghettos, and general deterioration in Burgess's concentric zone model of urban form?\n A. Second\n B. Fourth\n C. First\n D. Third\n\nResponse:",
+            "Below is a multiple-choice question. Respond with the letter that best answers the question. Keep your response brief, stating only the letter corresponding to your answer, followed by a period, with no explanation.\nThe question is:\nWhich zone contains low-income slums, ethnic ghettos, and general deterioration in Burgess's concentric zone model of urban form?\n A. Third\n B. Second\n C. First\n D. Fourth\n\nResponse:",
+            "Prepare to answer a multiple-choice question. Provide the letter that corresponds to the correct answer, followed by a period. Keep your response brief; no explanations are necessary.\nHere is the question:\nWhich zone contains low-income slums, ethnic ghettos, and general deterioration in Burgess's concentric zone model of urban form?\n A. Fourth\n B. First\n C. Third\n D. Second\n\nYour response:"
+        ],
+        "obj_label": [
+            "C",
+            "C",
+            "B"
+        ],
+        "relation_name": "geography"
+    }
+}
