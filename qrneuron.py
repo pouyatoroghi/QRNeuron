@@ -48,7 +48,7 @@ def main(args=None):
         common_threshold=args.common_threshold,#0.3,
         top_v=args.top_v,#20, 
         attr_threshold=args.attr_threshold,#0.2,
-        option_letters = list(string.ascii_uppercase)[:args.num_labels)],#["A", "B", "C", "D"],
+        option_letters = list(string.ascii_uppercase)[:args.num_labels],#["A", "B", "C", "D"],
         batch_size = args.batch_size,#8,
         steps = args.steps,#16,
     )
