@@ -40,6 +40,8 @@ def main(args=None):
     print("[ sample number = {a}]".format(a=len(DATA_SAMPLE)))
 
     # print(DATA_SAMPLE[0])
+    # Ensure result directory exists
+    Path(args.result_dir).mkdir(parents=True, exist_ok=True)
 
     KN = KeyNeuron(
         model_name = args.model_path,#"Qwen/Qwen2.5-0.5B-Instruct",
