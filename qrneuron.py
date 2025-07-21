@@ -3,7 +3,8 @@ import random
 import string
 import argparse
 from pathlib import Path
-from keyneuron import KeyNeuron
+# from keyneuron import KeyNeuron
+from keyneuron._extract_key_neuron import NaicaKeyNeuron as KeyNeuron
 
 def parse_args():
     parser = argparse.ArgumentParser(description="KeyNeuron extraction script")
