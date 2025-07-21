@@ -109,6 +109,8 @@ class NaicaKeyNeuron:
                 wf.flush()
                 logger.info("query {a} is finished. You check the result file".format(a=_uuid))
 
+                torch.cuda.empty_cache()
+
             # print(self.neuron_attribution_file)
             # for line in open(self.neuron_attribution_file):
             #     obj = json.loads(line)
