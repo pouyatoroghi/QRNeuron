@@ -1,0 +1,19 @@
+{
+  "0badfd15-88d0-40cd-b3a4-1dbc0253673c": {
+    "sentences": [
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nFind the degree for the given field extension Q(sqrt(2), sqrt(3), sqrt(18)) over Q.\nA. 0\nB. 4\nC. 2\nD. 6\n\nResponse:\n",
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nLet p = (1, 2, 5, 4)(2, 3) in S_5 . Find the index of <p> in S_5.\nA. 8\nB. 2\nC. 24\nD. 120\n\nResponse:\n",
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nFind all zeros in the indicated finite field of the given polynomial with coefficients in that field. x^5 + 3x^3 + x^2 + 2x in Z_5\nA. 0\nB. 1\nC. 0,1\nD. 0,4\n\nResponse:\n",
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nStatement 1 | A factor group of a non-Abelian group is non-Abelian. Statement 2 | If K is a normal subgroup of H and H is a normal subgroup of G, then K is a normal subgroup of G.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\n\nResponse:\n",
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nFind the product of the given polynomials in the given polynomial ring. f(x) = 4x - 5, g(x) = 2x^2 - 4x + 2 in Z_8[x].\nA. 2x^2 + 5\nB. 6x^2 + 4x + 6\nC. 0\nD. x^2 + 1\n\nResponse:\n"
+    ],
+    "obj_label": [
+      "B",
+      "C",
+      "D",
+      "B",
+      "B"
+    ],
+    "relation_name": "abstract_algebra"
+  }
+}
