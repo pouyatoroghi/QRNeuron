@@ -1,0 +1,20 @@
+{
+  "cb7656bc-35a9-4c83-b125-ff42d684d3b8": {
+    "sentences": [
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nThis question refers to the following information.\n\"Yesterday, December 7, 1941\u2014a date which will live in infamy\u2014the United States of America was suddenly and deliberately attacked by naval and air forces of the Empire of Japan. The United States was at peace with that nation and, at the solicitation of Japan, was still in conversation with its Government and its Emperor looking toward the maintenance of peace in the Pacific. Indeed, one hour after Japanese air squadrons had commenced bombing\u2026the Japanese Ambassador to the United States and his colleague delivered to the Secretary of State a formal reply to a recent American message. While this reply stated that it seemed useless to continue the existing diplomatic negotiations, it contained no threat or hint of war or armed attack\u2026.The attack yesterday\u2026has caused severe damage to American naval and military forces. Very many American lives have been lost. In addition American ships have been reported torpedoed on the high seas\u2026.As Commander-in-Chief of the Army and Navy, I have directed that all measures be taken for our defense.\"\nPresident Franklin D. Roosevelt, radio address, December 8, 1941\nWhich of the following statements best characterizes the economic consequences of the declaration of war described above?\nA. Japan was subsequently required to pay reparations to the United States, forcing it into a prolonged depression.\nB. The United States economy suffered due to the heavy costs of war.\nC. The United States initiated economic sanctions against Japan, causing a worldwide economic crisis.\nD. The United States was able to pay off its national debt due to the economic benefits of war.\nE. The attack led to an economic boom in Japan.\nF. Decreased trade with Asian nations precipitated economic recession in both the United States and Europe.\nG. The war led to the collapse of the United States economy, forcing it into a prolonged depression.\nH. The war-ravaged condition of Asia and Europe allowed the United States to emerge as one of the most prosperous nations on Earth.\nI. The cost of rebuilding after the attack led to economic recession in the United States.\nJ. Cold War tensions isolated the economies of both the Soviet Union and the United States, leading to economic struggle for both nations.\n\nResponse:\n"
+    ],
+    "obj_label": [
+      "H"
+    ],
+    "relation_name": "history"
+  },
+  "d1221f04-b5e1-4a6a-a7b7-6ae99afac7cb": {
+    "sentences": [
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nLet (x_n) be a sequence defined by x_1 = 2 and x_{n+1} = 1 + 1/(1 + x_n). If (x_n) converges, what must its limit be in decimals?\nA. 2.718\nB. 1.414\nC. 3.000\nD. 2.235\nE. 3.141\nF. 1.618\nG. 1.732\nH. 0.618\nI. 1.000\nJ. 2.000\n\nResponse:\n"
+    ],
+    "obj_label": [
+      "B"
+    ],
+    "relation_name": "math"
+  }
+}
