@@ -1,0 +1,11 @@
+{
+  "5df2acef-40d1-4e5c-83a8-42cc5167f8b2": {
+    "sentences": [
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nGiven that $P(A \\cup B)=0.76$ and $P\\left(A \\cup B^{\\prime}\\right)=0.87$, find $P(A)$.\nA. 0.50\nB. 0.70\nC. 0.67\nD. 0.55\nE. 0.76\nF. 0.60\nG. 0.85\nH.  0.63\nI. 0.80\nJ. 0.45\n\nResponse:\n"
+    ],
+    "obj_label": [
+      "H"
+    ],
+    "relation_name": "math"
+  }
+}
