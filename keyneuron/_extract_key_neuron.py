@@ -110,7 +110,7 @@
 #                 wf.flush()
 #                 logger.info("query {a} is finished. You check the result file".format(a=_uuid))
 
-#                 torch.cuda.empty_cache()
+#                 clear_cuda_memory()
 
 #             # print(self.neuron_attribution_file)
 #             # for line in open(self.neuron_attribution_file):
@@ -217,6 +217,14 @@ from tqdm import tqdm
 import json
 from pathlib import Path
 from .neuron_attribution import NeuronAtrribution
+import gc
+
+def clear_cuda_memory():
+    gc.collect()  # Python garbage collector
+    torch.cuda.empty_cache()  # Clear PyTorch CUDA cache
+    # Optional: Reset peak memory stats to track leaks
+    if torch.cuda.is_available():
+        torch.cuda.reset_peak_memory_stats()
 
 # Configure the logger
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -303,7 +311,7 @@ class NaicaKeyNeuron:
                 assert len(prompts) == len(ground_truth), "Must have equal number of queries and labels"
                 
                 # Clear GPU cache before processing
-                torch.cuda.empty_cache()
+                clear_cuda_memory()
             
                 neurons, attr_scores, neuron_freq = self.NA.get_neuron_attribution(
                     prompts=prompts,
@@ -324,7 +332,7 @@ class NaicaKeyNeuron:
 
                 # Clear GPU memory aggressively
                 del neurons, attr_scores, neuron_freq, prompts, ground_truth, relation_name
-                torch.cuda.empty_cache()
+                clear_cuda_memory()
 
                 print(f"Processed uuid {i}!")
 
@@ -345,7 +353,7 @@ class NaicaKeyNeuron:
                 all_attr_scores.append(score_dict)
             
             # Clear GPU memory after processing all samples
-            torch.cuda.empty_cache()
+            clear_cuda_memory()
             
             for index, neurons in enumerate(self.clusters):
                 scores = all_attr_scores[index]
@@ -362,7 +370,7 @@ class NaicaKeyNeuron:
             
             # Clear intermediate GPU memory
             del all_attr_scores, score_dict, temp_na
-            torch.cuda.empty_cache()
+            clear_cuda_memory()
             
             logger.info("the calulation of neuron attribution (NA) is finished, and the scores are stored in {a}".format(a=self.neuron_attribution_file))
         
@@ -382,7 +390,7 @@ class NaicaKeyNeuron:
             self.common_neurons = temp_common_neurons
             
             # Clear GPU memory
-            torch.cuda.empty_cache()
+            clear_cuda_memory()
         
         def _extract_key_neuron(self):
             
@@ -399,7 +407,7 @@ class NaicaKeyNeuron:
                 naica_scores.append(temp_naica_values)
 
             # Clear GPU memory before file operations
-            torch.cuda.empty_cache()
+            clear_cuda_memory()
 
             kn_wf = open(self.common_neuron_file, "w")
             for index, naica_value in enumerate(naica_scores):
@@ -422,7 +430,7 @@ class NaicaKeyNeuron:
                 
                 # Clear GPU memory periodically
                 if index % 10 == 0:
-                    torch.cuda.empty_cache()
+                    clear_cuda_memory()
             
             kn_wf.close()
             
@@ -431,4 +439,4 @@ class NaicaKeyNeuron:
             
             # Final GPU memory cleanup
             del naica_scores, temp_naica_values, neurons, key_neurons, key_neuron_names, scores
-            torch.cuda.empty_cache()
+            clear_cuda_memory()
