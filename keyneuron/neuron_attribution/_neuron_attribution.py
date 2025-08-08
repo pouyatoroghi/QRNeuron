@@ -180,6 +180,11 @@ class NeuronAtrribution:
         print((activations.unsqueeze(0) * scale_factors).shape, out.shape)
         aa = (activations.unsqueeze(0) * scale_factors).reshape(-1, activations.size(-1))
         print(tensors_equal(aa, out))
+        scale_factors = torch.linspace(0, 1, steps, device=activations.device).view(-1, 1)  # [steps, 1, 1]\
+        print((activations * scale_factors).shape, out.shape)
+        aa = (activations * scale_factors)
+        print("Main", tensors_equal(aa, out))
+        
         return (activations.unsqueeze(0) * scale_factors).reshape(-1, activations.size(-1))  # [steps * b, d]
         return out
 
