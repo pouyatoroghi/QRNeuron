@@ -12,6 +12,14 @@ from functools import partial
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from ._patch import *
 from ._config import ATTRIBUTION_CONFIG
+import gc
+
+def clear_cuda_memory():
+    gc.collect()  # Python garbage collector
+    torch.cuda.empty_cache()  # Clear PyTorch CUDA cache
+    # Optional: Reset peak memory stats to track leaks
+    if torch.cuda.is_available():
+        torch.cuda.reset_peak_memory_stats()
 
 
 # Configure the logger
@@ -233,7 +241,7 @@ class NeuronAtrribution:
 
         # Free encoded_input ASAP if not reused
         del encoded_input
-        torch.cuda.empty_cache()
+        clear_cuda_memory()
         
         return baseline_outputs, baseline_activations
 
@@ -280,7 +288,7 @@ class NeuronAtrribution:
 
             # Move to CPU immediately to free GPU memory
             scores.append(layer_scores.detach().cpu())
-            torch.cuda.empty_cache()
+            clear_cuda_memory()
 
         return torch.stack(scores)
     
@@ -329,7 +337,7 @@ class NeuronAtrribution:
 
             # Free memory immediately after each prompt
             del attribution_scores
-            torch.cuda.empty_cache()
+            clear_cuda_memory()
             
         return grads
             
@@ -394,7 +402,7 @@ class NeuronAtrribution:
                 neuron_freq[neuron] += 1
 
             del attribution_scores
-            torch.cuda.empty_cache()
+            clear_cuda_memory()
 
         final_neuron_attr_scores = [sum_neuron_attr_scores[tuple(n)] for n in neurons]
         final_neuron_freq = [neuron_freq[tuple(n)] for n in neurons]
@@ -497,7 +505,7 @@ class NeuronAtrribution:
 
                 # Free GPU memory immediately after each batch
                 del outputs, probs, grad
-                torch.cuda.empty_cache()
+                clear_cuda_memory()
 
             # then sum, and multiply by W-hat / m
             integrated_grads_this_step = torch.stack(integrated_grads_this_step, dim=0).sum(dim=0)
@@ -506,7 +514,7 @@ class NeuronAtrribution:
 
             # Free memory after each sampling step
             del baseline_outputs, baseline_activations, scaled_weights, integrated_grads_this_step
-            torch.cuda.empty_cache()
+            clear_cuda_memory()
   
         integrated_grads = torch.stack(integrated_grads, dim=0).sum(dim=0) / len(integrated_grads)
         return integrated_grads
