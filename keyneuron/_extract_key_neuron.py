@@ -326,6 +326,8 @@ class NaicaKeyNeuron:
                 del neurons, attr_scores, neuron_freq, prompts, ground_truth, relation_name
                 torch.cuda.empty_cache()
 
+                print(f"Processed uuid {i}!")
+
             wf.close()########################################################################################
                 
             self.clusters, all_attr_scores = list(), list()
