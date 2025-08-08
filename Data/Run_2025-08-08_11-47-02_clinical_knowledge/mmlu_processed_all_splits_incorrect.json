@@ -1,0 +1,15 @@
+{
+  "dcdc15e1-2a93-4eff-9f9e-bfb813ba6a70": {
+    "sentences": [
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nWhat size of cannula would you use in a patient who needed a rapid blood transfusion (as of 2020 medical knowledge)?\nA. 18 gauge.\nB. 20 gauge.\nC. 22 gauge.\nD. 24 gauge.\n\nResponse:\n",
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nWhat size of cannula would you use in a patient who needed a rapid blood transfusion (as of 2020 medical knowledge)?\nA. 18 gauge.\nB. 20 gauge.\nC. 22 gauge.\nD. 24 gauge.\n\nResponse:\n",
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nWhat size of cannula would you use in a patient who needed a rapid blood transfusion (as of 2020 medical knowledge)?\nA. 18 gauge.\nB. 20 gauge.\nC. 22 gauge.\nD. 24 gauge.\n\nResponse:\n"
+    ],
+    "obj_label": [
+      "B",
+      "C",
+      "D"
+    ],
+    "relation_name": "clinical_knowledge"
+  }
+}
