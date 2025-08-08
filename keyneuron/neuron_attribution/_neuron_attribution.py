@@ -131,7 +131,33 @@ class NeuronAtrribution:
     def n_layers(self):
         return len(self._get_transformer_layers())
 
-
+    def tensors_equal(tensor1: torch.Tensor, tensor2: torch.Tensor, rtol: float = 1e-5, atol: float = 1e-8) -> bool:
+        """
+        Check if two tensors are equal (with tolerances for floating point comparisons)
+    
+        Args:
+            tensor1: First tensor
+            tensor2: Second tensor
+            rtol: Relative tolerance (for float comparisons)
+            atol: Absolute tolerance (for float comparisons)
+    
+        Returns:
+            bool: True if tensors are equal within tolerances
+        """    
+        # Check if shapes match
+        if tensor1.shape != tensor2.shape:
+            return False
+    
+        # Check if dtypes match
+        if tensor1.dtype != tensor2.dtype:
+            return False
+    
+        # Exact comparison for integer/boolean types
+        if tensor1.dtype in (torch.int8, torch.int16, torch.int32, torch.int64, torch.bool):
+            return torch.equal(tensor1, tensor2)
+    
+        # Approximate comparison for floating point types
+        return torch.allclose(tensor1, tensor2, rtol=rtol, atol=atol)
 
     @staticmethod
     def scaled_input(activations: torch.Tensor, steps: int = 20, device: str = "cpu"):
@@ -149,6 +175,12 @@ class NeuronAtrribution:
             tiled_activations
             * torch.linspace(start=0, end=1, steps=steps).to(tiled_activations.device)[:, None]
         )
+
+        scale_factors = torch.linspace(0, 1, steps, device=activations.device).view(-1, 1, 1)  # [steps, 1, 1]\
+        print((activations.unsqueeze(0) * scale_factors).shape)
+        aa = (activations.unsqueeze(0) * scale_factors).reshape(-1, activations.size(-1))
+        print(self.tensors_equal(aa, out))
+        return (activations.unsqueeze(0) * scale_factors).reshape(-1, activations.size(-1))  # [steps * b, d]
         return out
 
     def get_baseline_with_activations(
