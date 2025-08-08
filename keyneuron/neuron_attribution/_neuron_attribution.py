@@ -309,7 +309,7 @@ class NeuronAtrribution:
         
         grads = dict()
         for (prompt,ground_truth) in tqdm(
-            zip(prompts, ground_truths), desc="Getting integrated gradients for each prompt...", disable=quiet
+            zip(prompts, ground_truths), desc="Getting integrated gradients for each prompt...", disable=False#quiet
         ):
             attribution_scores = self.get_scores(
                 prompt,
