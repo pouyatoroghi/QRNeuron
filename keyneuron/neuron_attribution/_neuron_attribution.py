@@ -170,23 +170,24 @@ class NeuronAtrribution:
         `steps`: int
         number of steps to take
         """
-        tiled_activations = einops.repeat(activations, "b d -> (r b) d", r=steps)
-        out = (
-            tiled_activations
-            * torch.linspace(start=0, end=1, steps=steps).to(tiled_activations.device)[:, None]
-        )
+        # tiled_activations = einops.repeat(activations, "b d -> (r b) d", r=steps)
+        # out = (
+        #     tiled_activations
+        #     * torch.linspace(start=0, end=1, steps=steps).to(tiled_activations.device)[:, None]
+        # )
 
-        scale_factors = torch.linspace(0, 1, steps, device=activations.device).view(-1, 1, 1)  # [steps, 1, 1]\
-        print((activations.unsqueeze(0) * scale_factors).shape, out.shape)
-        aa = (activations.unsqueeze(0) * scale_factors).reshape(-1, activations.size(-1))
-        print(tensors_equal(aa, out))
-        scale_factors = torch.linspace(0, 1, steps, device=activations.device).view(-1, 1)  # [steps, 1, 1]\
-        print((activations * scale_factors).shape, out.shape)
-        aa = (activations * scale_factors)
-        print("Main", tensors_equal(aa, out))
+        # scale_factors = torch.linspace(0, 1, steps, device=activations.device).view(-1, 1, 1)  # [steps, 1, 1]\
+        # print((activations.unsqueeze(0) * scale_factors).shape, out.shape)
+        # aa = (activations.unsqueeze(0) * scale_factors).reshape(-1, activations.size(-1))
+        # print(tensors_equal(aa, out))
+        scale_factors = torch.linspace(0, 1, steps, device=activations.device).view(-1, 1)  # [steps, 1]
+        # print((activations * scale_factors).shape, out.shape)
+        # aa = (activations * scale_factors)
+        return activations * scale_factors
+        # print("Main", tensors_equal(aa, out))
         
-        return (activations.unsqueeze(0) * scale_factors).reshape(-1, activations.size(-1))  # [steps * b, d]
-        return out
+        # return (activations.unsqueeze(0) * scale_factors).reshape(-1, activations.size(-1))  # [steps * b, d]
+        # return out
 
     def get_baseline_with_activations(
         self, encoded_input: dict, layer_idx: int, mask_idx: int
@@ -209,7 +210,9 @@ class NeuronAtrribution:
             """
 
             def hook_fn(acts):
-                self.baseline_activations = acts[:, mask_idx, :]
+                # self.baseline_activations = acts[:, mask_idx, :]
+                # Detach immediately to avoid keeping autograd history
+                self.baseline_activations = acts[:, mask_idx, :].detach()
 
             return register_hook(
                 model,
@@ -220,11 +223,18 @@ class NeuronAtrribution:
             )
  
         handle = get_activations(self.model, layer_idx=layer_idx, mask_idx=mask_idx)
-        baseline_outputs = self.model(**encoded_input)
+        # baseline_outputs = self.model(**encoded_input)
+        with torch.no_grad():  # No need to track gradients for baseline pass
+            baseline_outputs = self.model(**encoded_input)
       
         handle.remove()
         baseline_activations = self.baseline_activations
         self.baseline_activations = None
+
+        # Free encoded_input ASAP if not reused
+        del encoded_input
+        torch.cuda.empty_cache()
+        
         return baseline_outputs, baseline_activations
 
     def get_scores(
@@ -262,12 +272,17 @@ class NeuronAtrribution:
                 batch_size=batch_size,
                 steps=steps
             )
-            scores.append(layer_scores)
-        temp_device = scores[0].device
-        scores = [score.to(temp_device) for score in scores]
+            # scores.append(layer_scores)
+        # temp_device = scores[0].device
+        # scores = [score.to(temp_device) for score in scores]
+
+        # return torch.stack(scores)
+
+            # Move to CPU immediately to free GPU memory
+            scores.append(layer_scores.detach().cpu())
+            torch.cuda.empty_cache()
 
         return torch.stack(scores)
-
     
     def get_integrated_gradients(
         self,
@@ -302,15 +317,22 @@ class NeuronAtrribution:
                 batch_size=batch_size,
                 steps=steps,
                 pbar=False,
-            ).detach().cpu()
-            temp_dict = dict()
-            for neuron in neurons:
-                score = attribution_scores[neuron[0], neuron[1]].item()
-                temp_dict[str(neuron[0]) + "__" + str(neuron[1])] = score
+            )#.detach().cpu()
+            # temp_dict = dict()
+            # for neuron in neurons:
+            #     score = attribution_scores[neuron[0], neuron[1]].item()
+            #     temp_dict[str(neuron[0]) + "__" + str(neuron[1])] = score
+
+            temp_dict = {f"{neuron[0]}__{neuron[1]}": attribution_scores[neuron[0], neuron[1]].item() for neuron in neurons}
+            
             grads[ground_truth] = temp_dict
+
+            # Free memory immediately after each prompt
+            del attribution_scores
+            torch.cuda.empty_cache()
+            
         return grads
             
-
     def get_neuron_attribution(
         self,
         prompts: List[str],
@@ -370,13 +392,14 @@ class NeuronAtrribution:
                 if neuron not in neuron_freq:
                     neuron_freq[neuron] = 0
                 neuron_freq[neuron] += 1
-                
+
+            del attribution_scores
+            torch.cuda.empty_cache()
 
         final_neuron_attr_scores = [sum_neuron_attr_scores[tuple(n)] for n in neurons]
         final_neuron_freq = [neuron_freq[tuple(n)] for n in neurons]
         assert len(neurons) == len(final_neuron_attr_scores) == len(final_neuron_freq)
         return neurons, final_neuron_attr_scores, final_neuron_freq
-
 
     def get_scores_for_layer(
         self,
@@ -414,25 +437,14 @@ class NeuronAtrribution:
         integrated_grads = []
 
         for i in range(n_sampling_steps):
+            encoded_input, mask_idx, target_label = self._prepare_inputs(prompt, ground_truth)
             
-             
-            encoded_input, mask_idx, target_label = self._prepare_inputs(
-                prompt, ground_truth
-            )
-            (
-                baseline_outputs,
-                baseline_activations,
-            ) = self.get_baseline_with_activations(
-                encoded_input, layer_idx, mask_idx
-            )
+            (baseline_outputs, baseline_activations) = self.get_baseline_with_activations(encoded_input, layer_idx, mask_idx)
             
-
             # Now we want to gradually change the intermediate activations of our layer from 0 -> their original value
             # and calculate the integrated gradient of the masked position at each step
             # we do this by repeating the input across the batch dimension, multiplying the first batch by 0, the second by 0.1, etc., until we reach 1
-            scaled_weights = self.scaled_input(
-                baseline_activations, steps=steps, 
-            )
+            scaled_weights = self.scaled_input(baseline_activations, steps=steps)
             scaled_weights.requires_grad_(True)
 
             integrated_grads_this_step = []  # to store the integrated gradients
@@ -483,16 +495,18 @@ class NeuronAtrribution:
                     ff_attrs=self.input_ff_attr,
                 )
 
+                # Free GPU memory immediately after each batch
+                del outputs, probs, grad
+                torch.cuda.empty_cache()
+
             # then sum, and multiply by W-hat / m
-            integrated_grads_this_step = torch.stack(
-                integrated_grads_this_step, dim=0
-            ).sum(dim=0)
+            integrated_grads_this_step = torch.stack(integrated_grads_this_step, dim=0).sum(dim=0)
             integrated_grads_this_step *= baseline_activations.squeeze(0) / steps
             integrated_grads.append(integrated_grads_this_step)
 
+            # Free memory after each sampling step
+            del baseline_outputs, baseline_activations, scaled_weights, integrated_grads_this_step
+            torch.cuda.empty_cache()
   
-        integrated_grads = torch.stack(integrated_grads, dim=0).sum(dim=0) / len(
-            integrated_grads
-        )
+        integrated_grads = torch.stack(integrated_grads, dim=0).sum(dim=0) / len(integrated_grads)
         return integrated_grads
-    
