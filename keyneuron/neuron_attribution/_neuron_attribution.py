@@ -516,7 +516,7 @@ class NeuronAtrribution:
             json_file = "layer_shapes.json"
             
             # Data to store
-            data = {'later_idx': later_idx, 'baseline_activations_shape': baseline_activations.shape}
+            data = {'layer_idx': layer_idx, 'baseline_activations_shape': baseline_activations.shape}
 
             # Check if file exists and read existing data if it does
             existing_data = {}
