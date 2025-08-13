@@ -512,6 +512,31 @@ class NeuronAtrribution:
             integrated_grads_this_step *= baseline_activations.squeeze(0) / steps
             integrated_grads.append(integrated_grads_this_step)
 
+            ##########################################################################################################################
+            json_file = "layer_shapes.json"
+            
+            # Data to store
+            data = {'later_idx': later_idx, 'baseline_activations_shape': baseline_activations.shape}
+
+            # Check if file exists and read existing data if it does
+            existing_data = {}
+            if os.path.exists(json_file):
+                with open(json_file, 'r') as f:
+                    try:
+                        existing_data = json.load(f)
+                    except json.JSONDecodeError:
+                        existing_data = {}
+
+            # Update existing data with new data
+            existing_data.update(data)
+
+            # Write the combined data back to the file
+            with open(json_file, 'w') as f:
+                json.dump(existing_data, f, indent=4)
+
+            print(f"Data saved to {json_file}")
+            ##########################################################################################################################
+
             # Free memory after each sampling step
             del baseline_outputs, baseline_activations, scaled_weights, integrated_grads_this_step
             clear_cuda_memory()
