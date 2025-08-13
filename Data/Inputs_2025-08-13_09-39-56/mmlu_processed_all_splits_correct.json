@@ -1,0 +1,56 @@
+{
+  "7409aec3-4a22-4c95-b024-c2c944edbceb": {
+    "sentences": [
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nFind the degree for the given field extension Q(sqrt(2), sqrt(3), sqrt(18)) over Q.\nA. 0\nB. 4\nC. 2\nD. 6\n\nResponse:\n",
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nLet p = (1, 2, 5, 4)(2, 3) in S_5 . Find the index of <p> in S_5.\nA. 8\nB. 2\nC. 24\nD. 120\n\nResponse:\n",
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nFind all zeros in the indicated finite field of the given polynomial with coefficients in that field. x^5 + 3x^3 + x^2 + 2x in Z_5\nA. 0\nB. 1\nC. 0,1\nD. 0,4\n\nResponse:\n",
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nStatement 1 | A factor group of a non-Abelian group is non-Abelian. Statement 2 | If K is a normal subgroup of H and H is a normal subgroup of G, then K is a normal subgroup of G.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\n\nResponse:\n",
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nFind the product of the given polynomials in the given polynomial ring. f(x) = 4x - 5, g(x) = 2x^2 - 4x + 2 in Z_8[x].\nA. 2x^2 + 5\nB. 6x^2 + 4x + 6\nC. 0\nD. x^2 + 1\n\nResponse:\n",
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nStatement 1 | If a group has an element of order 15 it must have at least 8 elements of order 15. Statement 2 | If a group has more than 8 elements of order 15, it must have at least 16 elements of order 15.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\n\nResponse:\n",
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nStatement 1 | Every homomorphic image of a group G is isomorphic to a factor group of G. Statement 2 | The homomorphic images of a group G are the same (up to isomorphism) as the factor groups of G.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\n\nResponse:\n",
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nStatement 1 | A ring homomorphism is one to one if and only if the kernel is {0}. Statement 2 | Q is an ideal in R.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\n\nResponse:\n",
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nFind the degree for the given field extension Q(sqrt(2) + sqrt(3)) over Q.\nA. 0\nB. 4\nC. 2\nD. 6\n\nResponse:\n",
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nFind all zeros in the indicated finite field of the given polynomial with coefficients in that field. x^3 + 2x + 2 in Z_7\nA. 1\nB. 2\nC. 2,3\nD. 6\n\nResponse:\n"
+    ],
+    "obj_label": [
+      "B",
+      "C",
+      "D",
+      "B",
+      "B",
+      "A",
+      "A",
+      "D",
+      "B",
+      "C"
+    ],
+    "relation_name": "abstract_algebra"
+  },
+  "c31ad69e-25d0-4013-8908-878340b949cd": {
+    "sentences": [
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nA lesion causing compression of the facial nerve at the stylomastoid foramen will cause ipsilateral\nA. paralysis of the facial muscles.\nB. paralysis of the facial muscles and loss of taste.\nC. paralysis of the facial muscles, loss of taste and lacrimation.\nD. paralysis of the facial muscles, loss of taste, lacrimation and decreased salivation.\n\nResponse:\n",
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nA \"dished face\" profile is often associated with\nA. a protruding mandible due to reactivation of the condylar cartilage by acromegaly.\nB. a recessive maxilla due to failure of elongation of the cranial base.\nC. an enlarged frontal bone due to hydrocephaly.\nD. defective development of the maxillary air sinus.\n\nResponse:\n",
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nWhich of the following best describes the structure that collects urine in the body?\nA. Bladder\nB. Kidney\nC. Ureter\nD. Urethra\n\nResponse:\n",
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nWhich of the following structures is derived from ectomesenchyme?\nA. Motor neurons\nB. Skeletal muscles\nC. Melanocytes\nD. Sweat glands\n\nResponse:\n",
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nWhich of the following describes the cluster of blood capillaries found in each nephron in the kidney?\nA. Afferent arteriole\nB. Glomerulus\nC. Loop of Henle\nD. Renal pelvis\n\nResponse:\n",
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nA patient suffers a broken neck with damage to the spinal cord at the level of the sixth cervical vertebra.\nA. They will be unable to breathe without life support.\nB. They will only be able to breathe quietly.\nC. It is impossible to predict an effect on breathing.\nD. Breathing will be unaffected.\n\nResponse:\n",
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nWhich of the following anatomical regions of abdomen lies just distal to the sternum?\nA. Epigastric\nB. Hypochondriac\nC. Hypogastric\nD. Lumbar\n\nResponse:\n",
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nWhich of the following best describes the human body's defense mechanism against environmental bacteria?\nA. Hair in the nose\nB. Mucous membranes\nC. Osteoblasts\nD. Saliva\n\nResponse:\n",
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nThe palatine processes begin to fuse at\nA. six weeks post-fertilization.\nB. eight weeks post-fertilization.\nC. ten weeks post-fertilization.\nD. twelve weeks post-fertilization.\n\nResponse:\n",
+      "You will be asked a multiple-choice question. Respond with only the letter which corresponds to the correct answer, followed by a period. There is no need to provide an explanation, so your response should be very short.\nNow here is the question:\nPrimary motor cortex activity results in\nA. bilateral contraction of antigravity limb muscles.\nB. bilateral contraction of limb musculature.\nC. contraction of ipsilateral limb musculature.\nD. contraction of contralateral limb musculature.\n\nResponse:\n"
+    ],
+    "obj_label": [
+      "A",
+      "B",
+      "A",
+      "C",
+      "B",
+      "B",
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "relation_name": "anatomy"
+  }
+}
