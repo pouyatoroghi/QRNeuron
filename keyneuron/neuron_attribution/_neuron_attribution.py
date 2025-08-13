@@ -14,6 +14,7 @@ from ._patch import *
 from ._config import ATTRIBUTION_CONFIG
 import gc
 import os
+import json
 
 def clear_cuda_memory():
     gc.collect()  # Python garbage collector
