@@ -518,19 +518,21 @@ class NeuronAtrribution:
             json_file = "layer_shapes.json"
             
             # Data to store
-            data = {'layer_idx': layer_idx, 'baseline_activations_shape': baseline_activations.shape}
+            new_entry = {'layer_idx': layer_idx, 'baseline_activations_shape': baseline_activations.shape}
 
-            # Check if file exists and read existing data if it does
-            existing_data = {}
+            # Check if file exists and read existing data
+            existing_data = []
             if os.path.exists(json_file):
                 with open(json_file, 'r') as f:
                     try:
                         existing_data = json.load(f)
+                        if not isinstance(existing_data, list):  # If old format was a dict, convert to list
+                            existing_data = [existing_data]
                     except json.JSONDecodeError:
-                        existing_data = {}
+                        existing_data = []
 
-            # Update existing data with new data
-            existing_data.update(data)
+            # Append new entry to the list
+            existing_data.append(new_entry)
 
             # Write the combined data back to the file
             with open(json_file, 'w') as f:
