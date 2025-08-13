@@ -13,6 +13,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from ._patch import *
 from ._config import ATTRIBUTION_CONFIG
 import gc
+import os
 
 def clear_cuda_memory():
     gc.collect()  # Python garbage collector
