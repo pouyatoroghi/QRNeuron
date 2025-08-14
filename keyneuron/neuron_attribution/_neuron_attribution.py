@@ -77,6 +77,7 @@ class NeuronAtrribution:
         logger.info("[ total number of parameters = {a} ]".format(a=pytorch_total_params))
 
         self.model_name = model_name
+        self.layers_shapes_counter = 0
        
         self.option_letters = option_letters
         self.OPTION_IDS = [self.tokenizer.convert_tokens_to_ids(o) for o in self.option_letters]
@@ -266,7 +267,6 @@ class NeuronAtrribution:
         `steps`: int
             total number of steps (per token) for the integrated gradient calculations
         """
-
         scores = []
         encoded_input = self.tokenizer(prompt, return_tensors="pt").to(self.model.device)
         for layer_idx in tqdm(
@@ -291,7 +291,9 @@ class NeuronAtrribution:
             # Move to CPU immediately to free GPU memory
             scores.append(layer_scores.detach().cpu())
             clear_cuda_memory()
-
+            
+        self.layers_shapes_counter += 1
+        
         return torch.stack(scores)
     
     def get_integrated_gradients(
@@ -515,30 +517,32 @@ class NeuronAtrribution:
             integrated_grads.append(integrated_grads_this_step)
 
             ##########################################################################################################################
-            json_file = "layer_shapes.json"
+            # json_file = "layer_shapes.json"
             
-            # Data to store
-            new_entry = {'layer_idx': layer_idx, 'baseline_activations_shape': baseline_activations.shape}
+            # # Data to store
+            # new_entry = {'layer_idx': layer_idx, 'baseline_activations_shape': baseline_activations.shape}
 
-            # Check if file exists and read existing data
-            existing_data = []
-            if os.path.exists(json_file):
-                with open(json_file, 'r') as f:
-                    try:
-                        existing_data = json.load(f)
-                        if not isinstance(existing_data, list):  # If old format was a dict, convert to list
-                            existing_data = [existing_data]
-                    except json.JSONDecodeError:
-                        existing_data = []
+            # # Check if file exists and read existing data
+            # existing_data = []
+            # if os.path.exists(json_file):
+            #     with open(json_file, 'r') as f:
+            #         try:
+            #             existing_data = json.load(f)
+            #             if not isinstance(existing_data, list):  # If old format was a dict, convert to list
+            #                 existing_data = [existing_data]
+            #         except json.JSONDecodeError:
+            #             existing_data = []
 
-            # Append new entry to the list
-            existing_data.append(new_entry)
+            # # Append new entry to the list
+            # existing_data.append(new_entry)
 
-            # Write the combined data back to the file
-            with open(json_file, 'w') as f:
-                json.dump(existing_data, f, indent=4)
+            # # Write the combined data back to the file
+            # with open(json_file, 'w') as f:
+            #     json.dump(existing_data, f, indent=4)
 
-            print(f"Data saved to {json_file}")
+            # print(f"Data saved to {json_file}")
+            if self.layers_shapes_counter == 0:
+                print(f'layer_idx: {layer_idx}, baseline_activations_shape: {baseline_activations.shape}')
             ##########################################################################################################################
 
             # Free memory after each sampling step
