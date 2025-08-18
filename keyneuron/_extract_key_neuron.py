@@ -397,7 +397,9 @@ class NaicaKeyNeuron:
             
             self._cal_na()
             self._find_common_neuron()
-            
+            print(100*"******")
+            print(len(self.clusters))
+                
             naica_scores = list()
             for index, na_scores in enumerate(self.neuron_attribution):
                 temp_naica_values = dict()
