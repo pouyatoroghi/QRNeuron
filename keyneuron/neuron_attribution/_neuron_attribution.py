@@ -499,7 +499,7 @@ class NeuronAtrribution:
 
         final_integrated_grads = None
 
-        new_mask = torch.full((batch_size, 1), 1)
+        new_mask = torch.full((batch_size, 1), 1, device=inputs["input_ids"].device)
         
         for pos in range(gold_len):    
             # Now we want to gradually change the intermediate activations of our layer from 0 -> their original value
@@ -589,7 +589,7 @@ class NeuronAtrribution:
             del integrated_grads_accumulator
             torch.cuda.empty_cache()
 
-            new_token_ids = torch.full((batch_size, 1), gold_ids[pos])
+            new_token_ids = torch.full((batch_size, 1), gold_ids[pos], device=inputs["input_ids"].device)
             
             # Append new token from the gold to input_ids and attention_mask
             inputs["input_ids"] = torch.cat([
