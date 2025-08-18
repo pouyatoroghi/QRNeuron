@@ -305,8 +305,8 @@ class NaicaKeyNeuron:
                 logging.info("processing the query {a} ......".format(a=_uuid))
                 
                 prompts, ground_truth, relation_name = (
-                        self.data_samples[_uuid]["sentences"],
-                        self.data_samples[_uuid]["answers"],
+                        self.data_samples[_uuid]["documents"],
+                        self.data_samples[_uuid]["summaries"],
                     self.data_samples[_uuid]["relation_name"],
                 )
                 assert len(prompts) == len(ground_truth), "Must have equal number of queries and labels"
