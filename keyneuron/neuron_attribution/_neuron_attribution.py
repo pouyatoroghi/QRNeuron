@@ -536,6 +536,10 @@ class NeuronAtrribution:
 
                     # then calculate the gradients for each step w/r/t the inputs
                     probs = F.softmax(outputs.logits[:, -1, :], dim=-1)
+
+                    print(probs[:, gold_ids[pos]])
+
+                    print(torch.unbind(probs[:, gold_ids[pos]]))
   
                     grad = torch.autograd.grad(torch.unbind(probs[:, gold_ids[pos]]), batch_weights)[0]
 
