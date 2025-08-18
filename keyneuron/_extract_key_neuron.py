@@ -397,8 +397,8 @@ class NaicaKeyNeuron:
             
             self._cal_na()
             self._find_common_neuron()
-            print(100*"******")
-            print(len(self.clusters))
+            # print(100*"******")
+            # print(len(self.clusters))
                 
             naica_scores = list()
             for index, na_scores in enumerate(self.neuron_attribution):
@@ -414,20 +414,20 @@ class NaicaKeyNeuron:
 
             kn_wf = open(self.common_neuron_file, "w")
             for index, naica_value in enumerate(naica_scores):
-                print(100*"******")
-                print(self.common_neurons)
+                # print(100*"******")
+                # print(self.common_neurons)
                 neurons = sorted(naica_value.items(), key= lambda e:e[1], reverse=True)
-                print(100*"******")
-                print(neurons)
+                # print(100*"******")
+                # print(neurons)
                 neurons = [e for e in neurons if e[1] > 0]
-                print(100*"******")
-                print(neurons)
+                # print(100*"******")
+                # print(neurons)
                 key_neurons = [e for e in neurons][:self.top_v]
-                print(100*"******")
-                print(key_neurons)
+                # print(100*"******")
+                # print(key_neurons)
                 key_neurons = [w for w in key_neurons if w[0] not in self.common_neurons]
-                print(100*"******")
-                print(key_neurons)
+                # print(100*"******")
+                # print(key_neurons)
                 key_neuron_names = [w[0].split("_") for w in key_neurons]
                 key_neuron_names = [[int(w[0]), int(w[1])] for w in key_neuron_names]
                 scores = [w[1] for w in key_neurons]
