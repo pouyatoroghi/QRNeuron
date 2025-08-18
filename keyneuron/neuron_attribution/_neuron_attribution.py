@@ -127,7 +127,7 @@ class NeuronAtrribution:
     
         if gold is not None:
             gold_encoded = self.tokenizer(gold, return_tensors="pt").to(self.model.device)
-            gold_ids = gold_encoded['input_ids']#[0]  # Get first sequence
+            gold_ids = gold_encoded['input_ids'][0]  # Get first sequence
             gold_len = gold_ids.shape[0]  # Get length
     
         return encoded_input, gold_ids, gold_len
@@ -537,11 +537,11 @@ class NeuronAtrribution:
                     # then calculate the gradients for each step w/r/t the inputs
                     probs = F.softmax(outputs.logits[:, -1, :], dim=-1)
 
-                    print(gold_ids)
+                    # print(gold_ids)
 
-                    print(probs[:, gold_ids[pos]])
+                    # print(probs[:, gold_ids[pos]])
 
-                    print(torch.unbind(probs[:, gold_ids[pos]]))
+                    # print(torch.unbind(probs[:, gold_ids[pos]]))
   
                     grad = torch.autograd.grad(torch.unbind(probs[:, gold_ids[pos]]), batch_weights)[0]
 
