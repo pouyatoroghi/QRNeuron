@@ -68,12 +68,10 @@ class NeuronAtrribution:
 
         self.model_name = model_name
        
-        self.option_letters = option_letters
-        self.OPTION_IDS = [self.tokenizer.convert_tokens_to_ids(o) for o in self.option_letters]
-        
+        # self.option_letters = option_letters
+        # self.OPTION_IDS = [self.tokenizer.convert_tokens_to_ids(o) for o in self.option_letters]
         
         self.baseline_activations = None
-        
         
         if "gpt" in self.model_name :
             self.model_type = "gpt"
@@ -106,55 +104,74 @@ class NeuronAtrribution:
     def _get_transformer_layers(self):
         return get_attributes(self.model, self.transformer_layers_attr)
 
-    def _prepare_inputs(self, prompt, target=None, encoded_input=None):
+    def _prepare_inputs(self, prompt, gold=None, encoded_input=None):
+        """
+        Prepare model inputs and process gold tokens if provided.
+    
+        Args:
+            prompt: Input text string
+            gold: Optional gold text to tokenize (default: None)
+            encoded_input: Pre-encoded inputs (optional)
+        
+        Returns:
+            tuple: (encoded_input, gold_ids, gold_len)
+                encoded_input: Tokenized input dict
+                gold_ids: Tensor of gold token IDs (None if no gold)
+                gold_len: Length of gold tokens (0 if no gold)
+        """
         if encoded_input is None:
             encoded_input = self.tokenizer(prompt, return_tensors="pt").to(self.model.device)
-        
-        mask_idx = -1
-        if target is not None:
-            target = self.tokenizer.convert_tokens_to_ids(target)
-        return encoded_input, mask_idx, target
+    
+        gold_ids = None
+        gold_len = 0
+    
+        if gold is not None:
+            gold_encoded = self.tokenizer(gold, return_tensors="pt").to(self.model.device)
+            gold_ids = gold_encoded['input_ids']#[0]  # Get first sequence
+            gold_len = gold_ids.shape[0]  # Get length
+    
+        return encoded_input, gold_ids, gold_len
 
-    def _generate(self, prompt, ground_truth):
-        encoded_input, mask_idx, target_label = self._prepare_inputs(
-            prompt, ground_truth
-        )
+    # def _generate(self, prompt, ground_truth):
+    #     encoded_input, mask_idx, target_label = self._prepare_inputs(
+    #         prompt, ground_truth
+    #     )
 
-        n_sampling_steps = 1  
-        all_gt_probs = []
-        all_argmax_probs = []
-        argmax_tokens = []
-        argmax_completion_str = ""
+    #     n_sampling_steps = 1  
+    #     all_gt_probs = []
+    #     all_argmax_probs = []
+    #     argmax_tokens = []
+    #     argmax_completion_str = ""
 
-        for i in range(n_sampling_steps):
-            if i > 0:
-                # retokenize new inputs
-                encoded_input, mask_idx, target_label = self._prepare_inputs(
-                    prompt, ground_truth
-                )
-            outputs = self.model(**encoded_input)
-            probs = F.softmax(outputs.logits[:, mask_idx, :], dim=-1)
-            target_idx = target_label
-            gt_prob = probs[:, target_idx].item()
-            all_gt_probs.append(gt_prob)
+    #     for i in range(n_sampling_steps):
+    #         if i > 0:
+    #             # retokenize new inputs
+    #             encoded_input, mask_idx, target_label = self._prepare_inputs(
+    #                 prompt, ground_truth
+    #             )
+    #         outputs = self.model(**encoded_input)
+    #         probs = F.softmax(outputs.logits[:, mask_idx, :], dim=-1)
+    #         target_idx = target_label
+    #         gt_prob = probs[:, target_idx].item()
+    #         all_gt_probs.append(gt_prob)
 
-            # get info about argmax completion
-            option_probs = [(option_id, probs[:, option_id].item()) for option_id in self.OPTION_IDS]
-            argmax_id, argmax_prob = sorted(option_probs, key= lambda e:e[1], reverse=True)[0]
-            argmax_tokens.append(argmax_id)
-            argmax_str = self.tokenizer.decode([argmax_id])
+    #         # get info about argmax completion
+    #         option_probs = [(option_id, probs[:, option_id].item()) for option_id in self.OPTION_IDS]
+    #         argmax_id, argmax_prob = sorted(option_probs, key= lambda e:e[1], reverse=True)[0]
+    #         argmax_tokens.append(argmax_id)
+    #         argmax_str = self.tokenizer.decode([argmax_id])
             
-            all_argmax_probs.append(argmax_prob)
-            prompt += argmax_str
-            argmax_completion_str += argmax_str
+    #         all_argmax_probs.append(argmax_prob)
+    #         prompt += argmax_str
+    #         argmax_completion_str += argmax_str
 
-        gt_prob = math.prod(all_gt_probs) if len(all_gt_probs) > 1 else all_gt_probs[0]
-        argmax_prob = (
-            math.prod(all_argmax_probs)
-            if len(all_argmax_probs) > 1
-            else all_argmax_probs[0]
-        )
-        return gt_prob, argmax_prob, argmax_completion_str, argmax_tokens
+    #     gt_prob = math.prod(all_gt_probs) if len(all_gt_probs) > 1 else all_gt_probs[0]
+    #     argmax_prob = (
+    #         math.prod(all_argmax_probs)
+    #         if len(all_argmax_probs) > 1
+    #         else all_argmax_probs[0]
+    #     )
+    #     return gt_prob, argmax_prob, argmax_completion_str, argmax_tokens
 
     def n_layers(self):
         return len(self._get_transformer_layers())
@@ -190,53 +207,84 @@ class NeuronAtrribution:
         # return out
 
     def get_baseline_with_activations(
-        self, encoded_input: dict, layer_idx: int, mask_idx: int
+        self, 
+        encoded_input: dict, 
+        layer_idx: int, 
+        generation_length: int
     ):
         """
-        Gets the baseline outputs and activations for the unmodified model at a given index.
-
-        `encoded_input`: torch.Tensor
-            the inputs to the model from self.tokenizer.encode_plus()
-        `layer_idx`: int
-            which transformer layer to access
-        `mask_idx`: int
-            the position at which to get the activations (TODO: rename? with autoregressive models there's no mask, so)
-        """
-
-        def get_activations(model, layer_idx, mask_idx):
-            """
-            This hook function should assign the intermediate activations at a given layer / mask idx
-            to the 'self.baseline_activations' variable
-            """
-
-            def hook_fn(acts):
-                # self.baseline_activations = acts[:, mask_idx, :]
-                # Detach immediately to avoid keeping autograd history
-                self.baseline_activations = acts[:, mask_idx, :].detach()
-
-            return register_hook(
-                model,
-                layer_idx=layer_idx,
-                f=hook_fn,
-                transformer_layers_attr=self.transformer_layers_attr,
-                ff_attrs=self.input_ff_attr,
-            )
- 
-        handle = get_activations(self.model, layer_idx=layer_idx, mask_idx=mask_idx)
-        # baseline_outputs = self.model(**encoded_input)
-        with torch.no_grad():  # No need to track gradients for baseline pass
-            baseline_outputs = self.model(**encoded_input)
-      
-        handle.remove()
-        baseline_activations = self.baseline_activations
-        self.baseline_activations = None
-
-        # Free encoded_input ASAP if not reused
-        del encoded_input
-        torch.cuda.empty_cache()
+        Gets baseline outputs and raw activations during generation using past_key_values.
+    
+        Args:
+            encoded_input: {'input_ids': torch.Tensor, 'attention_mask': torch.Tensor}
+            layer_idx: Layer index to monitor
+            generation_length: Number of new tokens to generate
         
-        return baseline_outputs, baseline_activations
-
+        Returns:
+            tuple: (final_outputs, activations_dict)
+                final_outputs: Model outputs after generation
+                activations_dict: {position: activations_tensor} for each generated position
+        """
+        activations_dict = {}
+        original_length = encoded_input['input_ids'].shape[1]
+        past_key_values = None
+    
+        # Hook setup - this will capture the raw activations you want
+        def get_activation_hook(position):
+            def hook_fn(acts):
+                # Only store the activations for the newest token
+                activations_dict[position] = acts[:, -1, :].detach()
+            return hook_fn
+    
+        # Initial setup
+        handle = register_hook(
+            self.model,
+            layer_idx=layer_idx,
+            f=get_activation_hook(0),
+            transformer_layers_attr=self.transformer_layers_attr,
+            ff_attrs=self.input_ff_attr,
+        )
+    
+        with torch.no_grad():
+            # First forward pass
+            outputs = self.model(**encoded_input, use_cache=True)
+            past_key_values = outputs.past_key_values
+        
+            # Sequential generation
+            for i in range(1, generation_length):
+                current_pos = i
+                handle.remove()  # Remove previous hook
+            
+                # Register new hook for current position
+                handle = register_hook(
+                    self.model,
+                    layer_idx=layer_idx,
+                    f=get_activation_hook(current_pos),
+                    transformer_layers_attr=self.transformer_layers_attr,
+                    ff_attrs=self.input_ff_attr,
+                )
+            
+                # Generate next token using cached KV
+                next_token = outputs.logits[:, -1, :].argmax(-1, keepdim=True)
+                outputs = self.model(
+                    input_ids=next_token,
+                    attention_mask=torch.cat([
+                        encoded_input['attention_mask'],
+                        torch.ones_like(next_token)
+                    ], dim=1),
+                    past_key_values=past_key_values,
+                    use_cache=True
+                )
+                past_key_values = outputs.past_key_values
+    
+        handle.remove()  # Clean up final hook
+    
+        # Memory management
+        del encoded_input, past_key_values, outputs
+        clear_cuda_memory()
+    
+        return activations_dict
+    
     def get_scores(
         self,
         prompt: str,
@@ -258,7 +306,7 @@ class NeuronAtrribution:
         """
 
         scores = []
-        encoded_input = self.tokenizer(prompt, return_tensors="pt").to(self.model.device)
+        # encoded_input = self.tokenizer(prompt, return_tensors="pt").to(self.model.device)
         for layer_idx in tqdm(
             range(self.n_layers()),
             desc="Getting attribution scores for each layer...",
@@ -267,7 +315,7 @@ class NeuronAtrribution:
             layer_scores = self.get_scores_for_layer(
                 prompt,
                 ground_truth,
-                encoded_input=encoded_input,
+                # encoded_input=encoded_input,
                 layer_idx=layer_idx,
                 batch_size=batch_size,
                 steps=steps
@@ -308,7 +356,7 @@ class NeuronAtrribution:
         """
         
         grads = dict()
-        for (prompt,ground_truth) in tqdm(
+        for (prompt, ground_truth) in tqdm(
             zip(prompts, ground_truths), desc="Getting integrated gradients for each prompt...", disable=False#quiet
         ):
             attribution_scores = self.get_scores(
@@ -366,7 +414,7 @@ class NeuronAtrribution:
         ), "Must provide a list of different prompts to get neuron attributon scores"
 
         neurons, sum_neuron_attr_scores, neuron_freq = [], dict(), dict()
-        for (prompt,ground_truth) in tqdm(
+        for (prompt, ground_truth) in tqdm(
             zip(prompts, ground_truths), desc="Getting the neuron attribution score for each prompt...", disable=quiet
         ):
             
@@ -429,84 +477,124 @@ class NeuronAtrribution:
         n_batches = steps // batch_size
 
         # First we take the unmodified model and use a hook to return the baseline intermediate activations at our chosen target layer
-        encoded_input, mask_idx, target_label = self._prepare_inputs(
-            prompt, ground_truth, encoded_input
-        )
 
-        n_sampling_steps = 1  
-        integrated_grads = []
+        n_sampling_steps = 1
 
-        for i in range(n_sampling_steps):
-            encoded_input, mask_idx, target_label = self._prepare_inputs(prompt, ground_truth)
+        # Prepare inputs
+        encoded_input, gold_ids, gold_len = self._prepare_inputs(prompt, ground_truth, encoded_input)
+
+        inputs = {
+            "input_ids": einops.repeat(
+                encoded_input["input_ids"], "b d -> (r b) d", r=batch_size
+            ),
+            "attention_mask": einops.repeat(
+                encoded_input["attention_mask"],
+                "b d -> (r b) d",
+                r=batch_size,
+            ),
+        }
             
-            (baseline_outputs, baseline_activations) = self.get_baseline_with_activations(encoded_input, layer_idx, mask_idx)
-            
+        # Get baseline activations for ALL positions
+        baseline_activations_dict = self.get_baseline_with_activations(encoded_input, layer_idx, gold_len)
+
+        final_integrated_grads = None
+
+        new_mask = torch.full((batch_size, 1), 1)
+        
+        for pos in range(gold_len):    
             # Now we want to gradually change the intermediate activations of our layer from 0 -> their original value
             # and calculate the integrated gradient of the masked position at each step
             # we do this by repeating the input across the batch dimension, multiplying the first batch by 0, the second by 0.1, etc., until we reach 1
+            baseline_activations = baseline_activations_dict[pos]
+            
             scaled_weights = self.scaled_input(baseline_activations, steps=steps)
             scaled_weights.requires_grad_(True)
 
-            integrated_grads_this_step = []  # to store the integrated gradients
+            # Initialize accumulator for integrated gradients
+            integrated_grads_accumulator = None
+            
+            for i in range(n_sampling_steps):
+                
+                # Initialize accumulator for this step's gradients
+                step_grads_accumulator = None
 
-            for batch_weights in scaled_weights.chunk(n_batches):
-                # we want to replace the intermediate activations at some layer, at the mask position, with `batch_weights`
-                # first tile the inputs to the correct batch size
-                inputs = {
-                    "input_ids": einops.repeat(
-                        encoded_input["input_ids"], "b d -> (r b) d", r=batch_size
-                    ),
-                    "attention_mask": einops.repeat(
-                        encoded_input["attention_mask"],
-                        "b d -> (r b) d",
-                        r=batch_size,
-                    ),
-                }
-                # then patch the model to replace the activations with the scaled activations
-                patch_ff_layer(
-                    self.model,
-                    layer_idx=layer_idx,
-                    mask_idx=mask_idx,
-                    replacement_activations=batch_weights,
-                    transformer_layers_attr=self.transformer_layers_attr,
-                    ff_attrs=self.input_ff_attr,
-                )
+                for batch_weights in scaled_weights.chunk(n_batches):
+                    # we want to replace the intermediate activations at some layer, at the mask position, with `batch_weights`
+                    # first tile the inputs to the correct batch size
+                    # then patch the model to replace the activations with the scaled activations
+                    patch_ff_layer(
+                        self.model,
+                        layer_idx=layer_idx,
+                        mask_idx=-1,
+                        replacement_activations=batch_weights,
+                        transformer_layers_attr=self.transformer_layers_attr,
+                        ff_attrs=self.input_ff_attr,
+                    )
 
-                # then forward through the model to get the logits
-                outputs = self.model(**inputs)
+                    # then forward through the model to get the logits
+                    outputs = self.model(**inputs)
 
-                # then calculate the gradients for each step w/r/t the inputs
-                probs = F.softmax(outputs.logits[:, mask_idx, :], dim=-1)
-                if n_sampling_steps > 1:
-                    target_idx = target_label[i]
+                    # then calculate the gradients for each step w/r/t the inputs
+                    probs = F.softmax(outputs.logits[:, -1, :], dim=-1)
+  
+                    grad = torch.autograd.grad(torch.unbind(probs[:, gold_ids[pos]]), batch_weights)[0]
+
+                    grad = grad.sum(dim=0)
+
+                    if step_grads_accumulator is None:
+                        step_grads_accumulator = grad
+                    else:
+                        step_grads_accumulator += grad
+                    # integrated_grads_this_step.append(grad)
+
+                    unpatch_ff_layer(
+                        self.model,
+                        layer_idx=layer_idx,
+                        transformer_layers_attr=self.transformer_layers_attr,
+                        ff_attrs=self.input_ff_attr,
+                    )
+
+                    # Free GPU memory immediately after each batch
+                    del outputs, probs, grad
+                    torch.cuda.empty_cache()
+
+                # then sum, and multiply by W-hat / m
+                # integrated_grads_this_step = torch.stack(integrated_grads_this_step, dim=0).sum(dim=0)
+                step_grads_accumulator *= baseline_activations.squeeze(0) / steps
+                # integrated_grads.append(integrated_grads_this_step)
+                if integrated_grads_accumulator is None:
+                    integrated_grads_accumulator = step_grads_accumulator
                 else:
-                    target_idx = target_label
-                grad = torch.autograd.grad(
-                    torch.unbind(probs[:, target_idx]), batch_weights
-                )[0]
+                    integrated_grads_accumulator += step_grads_accumulator
 
-                grad = grad.sum(dim=0)
-                integrated_grads_this_step.append(grad)
-
-                unpatch_ff_layer(
-                    self.model,
-                    layer_idx=layer_idx,
-                    transformer_layers_attr=self.transformer_layers_attr,
-                    ff_attrs=self.input_ff_attr,
-                )
-
-                # Free GPU memory immediately after each batch
-                del outputs, probs, grad
+                # Free memory after each sampling step
+                del baseline_outputs, baseline_activations, scaled_weights, step_grads_accumulator
                 torch.cuda.empty_cache()
 
-            # then sum, and multiply by W-hat / m
-            integrated_grads_this_step = torch.stack(integrated_grads_this_step, dim=0).sum(dim=0)
-            integrated_grads_this_step *= baseline_activations.squeeze(0) / steps
-            integrated_grads.append(integrated_grads_this_step)
+            # Average the accumulated gradients
+            integrated_grads_accumulator /= n_sampling_steps
 
-            # Free memory after each sampling step
-            del baseline_outputs, baseline_activations, scaled_weights, integrated_grads_this_step
+            if final_integrated_grads:
+                final_integrated_grads += integrated_grads_accumulator
+            else:
+                final_integrated_grads = integrated_grads_accumulator
+
+            # Free GPU memory immediately after each batch
+            del integrated_grads_accumulator
             torch.cuda.empty_cache()
-  
-        integrated_grads = torch.stack(integrated_grads, dim=0).sum(dim=0) / len(integrated_grads)
-        return integrated_grads
+
+            new_token_ids = torch.full((batch_size, 1), gold_ids[pos])
+            
+            # Append new token from the gold to input_ids and attention_mask
+            inputs["input_ids"] = torch.cat([
+                                            inputs["input_ids"], 
+                                            new_token_ids
+                                            ], dim=1)  # Shape: (batch, seq_len + 1)
+
+            inputs["attention_mask"] = torch.cat([
+                                                inputs["attention_mask"],
+                                                new_mask  # 1 for new tokens
+                                                ], dim=1)  # Shape: (batch, seq_len + 1)
+            
+        return final_integrated_grads
+
