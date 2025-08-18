@@ -218,8 +218,17 @@ import json
 from pathlib import Path
 from .neuron_attribution import NeuronAtrribution
 
-# Configure the logger
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+# # Configure the logger
+# logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler("app.log"),  # Log to file
+        logging.StreamHandler()         # Log to console
+    ]
+)
 
 # Create a logger
 logger = logging.getLogger(__name__)
