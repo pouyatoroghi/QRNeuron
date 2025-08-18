@@ -574,7 +574,7 @@ class NeuronAtrribution:
                     integrated_grads_accumulator += step_grads_accumulator
 
                 # Free memory after each sampling step
-                del baseline_outputs, baseline_activations, scaled_weights, step_grads_accumulator
+                del baseline_activations, scaled_weights, step_grads_accumulator
                 torch.cuda.empty_cache()
 
             # Average the accumulated gradients
