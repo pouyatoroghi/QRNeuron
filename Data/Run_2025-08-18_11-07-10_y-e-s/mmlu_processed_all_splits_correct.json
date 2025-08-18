@@ -1,0 +1,33 @@
+{
+  "fa3bc546-504d-4c22-94a8-afe2e7bdbd35": {
+    "sentences": [
+      "What is the chemical formula for water, and why does it form a bent molecular geometry instead of a linear shape?",
+      "According to Newton's First Law of Motion, what happens to an object in motion when no external force acts upon it?"
+    ],
+    "answers": [
+      "H\u2082O; lone electron pairs on oxygen repel bonds into a bent shape.",
+      "It remains in motion at constant velocity unless acted upon."
+    ],
+    "relation_name": 1
+  },
+  "935483c8-70bf-4ead-b25e-217b7089b02b": {
+    "sentences": [
+      "In photosynthesis, what molecule absorbs sunlight energy to initiate the light-dependent reactions, and in which organelle does this process occur?",
+      "What is the atomic number of an element defined by, and how does it determine the element's identity in the periodic table?"
+    ],
+    "answers": [
+      "Chlorophyll absorbs light; photosynthesis occurs in chloroplasts.",
+      "Protons in the nucleus; it defines the element uniquely."
+    ],
+    "relation_name": 1
+  },
+  "830915d6-23ff-4ce1-bb40-ef11f2cc0f62": {
+    "sentences": [
+      "How does the human circulatory system ensure oxygenated blood and deoxygenated blood remain separate in the heart?"
+    ],
+    "answers": [
+      "The heart's four chambers and valves prevent mixing of blood types."
+    ],
+    "relation_name": 1
+  }
+}
