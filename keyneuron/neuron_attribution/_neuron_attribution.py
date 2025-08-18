@@ -281,7 +281,7 @@ class NeuronAtrribution:
     
         # Memory management
         del encoded_input, past_key_values, outputs
-        clear_cuda_memory()
+        torch.cuda.empty_cache()
     
         return activations_dict
     
