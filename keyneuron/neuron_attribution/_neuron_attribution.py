@@ -580,10 +580,10 @@ class NeuronAtrribution:
             # Average the accumulated gradients
             integrated_grads_accumulator /= n_sampling_steps
 
-            if final_integrated_grads:
-                final_integrated_grads += integrated_grads_accumulator
-            else:
+            if final_integrated_grads is None:
                 final_integrated_grads = integrated_grads_accumulator
+            else:
+                final_integrated_grads += integrated_grads_accumulator
 
             # Free GPU memory immediately after each batch
             del integrated_grads_accumulator
