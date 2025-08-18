@@ -297,7 +297,7 @@ class NaicaKeyNeuron:
                 
                 prompts, ground_truth, relation_name = (
                         self.data_samples[_uuid]["sentences"],
-                        self.data_samples[_uuid]["obj_label"],
+                        self.data_samples[_uuid]["answers"],
                     self.data_samples[_uuid]["relation_name"],
                 )
                 assert len(prompts) == len(ground_truth), "Must have equal number of queries and labels"
